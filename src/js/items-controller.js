@@ -114,7 +114,7 @@ var _getItemAt,
 			// if it's not image, we return zero bounds (content is not zoomable)
 			return item.bounds;
 		}
-		
+		return false;
 	},
 
 	
@@ -130,7 +130,7 @@ var _getItemAt,
 		if(img) {
 
 			item.imageAppended = true;
-			_setImageSize(item, img, (item === self.currItem && _renderMaxResolution) );
+			_setImageSize(item, img);
 			
 			baseDiv.appendChild(img);
 
@@ -230,7 +230,7 @@ _registerModule('Controller', {
 			index = _getLoopedId(index);
 			var item = _getItemAt(index);
 
-			if(!item || ((item.loaded || item.loading) && !_itemsNeedUpdate)) {
+			if(!item || item.loaded || item.loading) {
 				return;
 			}
 
@@ -258,7 +258,7 @@ _registerModule('Controller', {
 			_listen('beforeChange', function(diff) {
 
 				var p = _options.preload,
-					isNext = diff === null ? true : (diff >= 0),
+					isNext = diff === null ? true : (diff > 0),
 					preloadBefore = Math.min(p[0], _getNumItems() ),
 					preloadAfter = Math.min(p[1], _getNumItems() ),
 					i;

@@ -145,6 +145,7 @@
 .pswp__container,
 .pswp__zoom-wrap {
 	-webkit-backface-visibility: hidden;
+	will-change: transform;
 }
 
 .pswp__item {

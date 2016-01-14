@@ -90,8 +90,7 @@ var PhotoSwipeUI_Default =
 				return pswp.currItem.title || '';
 			},
 				
-			indexIndicatorSep: ' / ',
-			fitControlsWidth: 1200
+			indexIndicatorSep: ' / '
 
 		},
 		_blockControlsTap,
@@ -115,7 +114,7 @@ var PhotoSwipeUI_Default =
 
 			var target = e.target || e.srcElement,
 				uiElement,
-				clickedClass = target.getAttribute('class') || '',
+				clickedClass = target.className,
 				found;
 
 			for(var i = 0; i < _uiElements.length; i++) {
@@ -147,7 +146,7 @@ var PhotoSwipeUI_Default =
 
 		},
 		_fitControlsInViewport = function() {
-			return !pswp.likelyTouchDevice || _options.mouseUsed || screen.width > _options.fitControlsWidth;
+			return !pswp.likelyTouchDevice || _options.mouseUsed || screen.width > 1200;
 		},
 		_togglePswpClass = function(el, cName, add) {
 			framework[ (add ? 'add' : 'remove') + 'Class' ](el, 'pswp__' + cName);
@@ -278,7 +277,7 @@ var PhotoSwipeUI_Default =
 			}
 		},
 		_setupFullscreenAPI = function() {
-			if(_options.fullscreenEl && !framework.features.isOldAndroid) {
+			if(_options.fullscreenEl) {
 				if(!_fullscrenAPI) {
 					_fullscrenAPI = ui.getFullscreenAPI();
 				}
@@ -572,8 +571,8 @@ var PhotoSwipeUI_Default =
 			var t = e.target || e.srcElement;
 			if(
 				t && 
-				t.getAttribute('class') && e.type.indexOf('mouse') > -1 && 
-				( t.getAttribute('class').indexOf('__caption') > 0 || (/(SMALL|STRONG|EM)/i).test(t.tagName) ) 
+				t.className && e.type.indexOf('mouse') > -1 && 
+				( t.className.indexOf('__caption') > 0 || (/(SMALL|STRONG|EM)/i).test(t.tagName) ) 
 			) {
 				preventObj.prevent = false;
 			}

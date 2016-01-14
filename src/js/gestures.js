@@ -79,12 +79,12 @@ var _gestureStartTime,
 	
 	// find the closest parent DOM element
 	_closestElement = function(el, fn) {
-	  	if(!el || el === document) {
+	  	if(!el) {
 	  		return false;
 	  	}
 
 	  	// don't search elements above pswp__scroll-wrap
-	  	if(el.getAttribute('class') && el.getAttribute('class').indexOf('pswp__scroll-wrap') > -1 ) {
+	  	if(el.className && el.className.indexOf('pswp__scroll-wrap') > -1 ) {
 	  		return false;
 	  	}
 
